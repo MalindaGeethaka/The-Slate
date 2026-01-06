@@ -1,0 +1,111 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Blurred background image */
+.bg {
+  position: absolute;
+  inset: 0;
+  background-size:cover;
+  background-position: center;
+  filter: blur(25px);
+  transform: scale(2);
+  z-index: 0;
+}
+
+/* Foreground content */
+.content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 100px;
+  color: #fff;
+}
+
+/* LEFT TEXT */
+.left {
+  flex: 1;
+}
+
+.left h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  max-width: 400px;
+  animation: fadeIn 0.6s ease;
+}
+
+/* CENTER IMAGE */
+.center {
+  flex: 1;
+  display: flex;
+  justify-content: left;
+}
+
+.center img {
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 8px solid rgb(240, 236, 236);
+  animation:both scaleIn 1.2s ease;
+  margin-left: -200px;
+}
+
+/* RIGHT CAROUSEL */
+.carousel {
+  position: absolute;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.thumb {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.thumb:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.active {
+  opacity: 1;
+  border: 2px solid white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .content {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .carousel {
+    flex-direction: row;
+    position: static;
+    margin-top: 20px;
+  }
+}

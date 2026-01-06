@@ -1,0 +1,110 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background-color: #332014;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Left section: Logo + Brand Name */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: auto;
+  height: 48px;
+  display: block;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Center section: Links */
+.center {
+  display: flex;
+  gap: 30px;
+  font-size: 1.1rem;
+}
+
+.center a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+
+}
+
+.center a:hover {
+  color: #e63946;
+  font-size: 1.12rem;
+}
+
+/* Right section: Book Now button */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.right .bookButton {
+  background-color: #e63946;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.right .bookButton:hover {
+  background-color: #d62828;
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .center {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  .center.mobileMenuOpen {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
