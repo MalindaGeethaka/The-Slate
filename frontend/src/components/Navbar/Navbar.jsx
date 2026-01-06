@@ -9,13 +9,13 @@ const Navbar = () => {
 
   return (
     <nav className={styles.navbar}>
-      {/* Left: Logo + Name */}
+      
       <div className={styles.left}>
         <img src="./images/logo.png" alt="The Slate Logo" className={styles.logo} />
         <span className={styles.brand}>The Slate</span>
       </div>
 
-      {/* Center: Links */}
+      
       <div className={`${styles.center} ${menuOpen ? styles.mobileMenuOpen : ""}`}>
         <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
         <Link href="/menu" onClick={() => setMenuOpen(false)}>Menu</Link>
@@ -23,13 +23,13 @@ const Navbar = () => {
         <Link href="/venue" onClick={() => setMenuOpen(false)}>Venue</Link>
       </div>
 
-      {/* Right: Button */}
+      
       <div className={styles.right}>
         <button className={styles.bookButton} onClick={() => alert("Go to booking page")}>
           Book Now
         </button>
 
-        {/* Hamburger for mobile */}
+       
         <div className={styles.hamburger} onClick={toggleMenu}>
           <div className={styles.bar}></div>
           <div className={styles.bar}></div>

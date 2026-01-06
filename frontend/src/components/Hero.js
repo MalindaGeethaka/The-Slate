@@ -3,19 +3,19 @@ import styles from "../../styles/hero.module.css";
 
 const slides = [
   {
-    text: "Serving happiness on plates",
+    text: "Serving Happiness On A Plate",
     image: "/images/chikka.png",
   },
   {
-    text: "Irresistible food worth remembering",
+    text: "Savor The Flavor Of Fresh Ingredients",
     image: "/images/sushi1.png",
   },
   {
-    text: "Delicious meals made daily",
+    text: "Experience Culinary Excellence",
     image: "/images/sushi.png",
   },
   {
-    text: "Our dish will leave you wanting more",
+    text: "Our Dish Will Leave You Wanting More",
     image: "/images/sushi3.png",
   },
 ];
@@ -33,20 +33,20 @@ export default function Hero() {
 
   return (
     <section className={styles.hero}>
-      {/* Blurred background */}
+      
       <div
         className={styles.bg}
         style={{ backgroundImage: `url(${slides[current].image})` }}
       />
 
-      {/* Foreground content */}
+     
       <div className={styles.content}>
-        {/* Left text */}
+        
         <div className={styles.left}>
           <h1 key={current}>{slides[current].text}</h1>
         </div>
 
-        {/* Center image */}
+       
         <div className={styles.center}>
           <img
             src={slides[current].image}
@@ -55,7 +55,7 @@ export default function Hero() {
           />
         </div>
 
-        {/* Right vertical carousel */}
+        
         <div className={styles.carousel}>
           {slides.map((slide, index) => (
             <img
