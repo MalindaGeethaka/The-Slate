@@ -18,7 +18,7 @@ const Navbar = () => {
       
       <div className={`${styles.center} ${menuOpen ? styles.mobileMenuOpen : ""}`}>
         <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
-        <Link href="/menu" onClick={() => setMenuOpen(false)}>Menu</Link>
+        <Link href="/menu/menu" onClick={() => setMenuOpen(false)}>Menu</Link>
         <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
         <Link href="/venue" onClick={() => setMenuOpen(false)}>Venue</Link>
       </div>

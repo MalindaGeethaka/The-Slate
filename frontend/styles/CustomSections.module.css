@@ -9,25 +9,27 @@
 
 .imageWrapper {
   position: absolute;
-  width: 70%;
+  width: 100vw;
 }
 
 .imageWrapper img {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  z-index: 1;
+  z-index:1;
 }
 
 .yellowBox {
   position: relative;
-  bottom: 40px;
+  bottom: 90px;
   left: 40px;
   background: #fcbf49;
-  padding: 30px;
-  max-width: 300px;
+  padding: 40px;
+  width: 500px;
   z-index: 2  ;
   overflow: visible;
+  font-size: 20px;
+  
 }
 
 /* ===== SECTION 2 ===== */
