@@ -17,6 +17,11 @@ const menuItems = [
     image: "/images/menu2.jpg",
     description: "Rich chocolate dessert topped with cream.",
   },
+  {id: 4,
+      name: "malinda ",
+      category: "Beverages",
+      price: 5,
+      rating: 4.4,}
 ];
 
 export default function handler(req, res) {

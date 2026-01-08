@@ -25,7 +25,7 @@ export default function handler(req, res) {
     },
     {
       id: 4,
-      name: "malinda",
+      name: "malinda ",
       category: "Beverages",
       price: 5,
       rating: 4.4,
