@@ -7,13 +7,13 @@ export default function SectionOne() {
           <h1>Fresh & Premium</h1>
           <p>Crafted with love and the finest ingredients.</p>
         </div>
+      <div className={styles.imageWrapper}>
+        <img src="/images/sec1.jpg" alt="Food" />
+        </div>
         <div className={styles.textSec}>
           <h1>Among the best Saudi Chefs in the world,
             serving you excellence on a plate.
           </h1>
-        </div>
-      <div className={styles.imageWrapper}>
-        <img src="/images/sec1.jpg" alt="Food" />
         </div>
         
       

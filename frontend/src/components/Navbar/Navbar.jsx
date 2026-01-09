@@ -25,8 +25,11 @@ const Navbar = () => {
 
       
       <div className={styles.right}>
-        <button className={styles.bookButton} onClick={() => alert("Go to booking page")}>
-          Book Now
+        <button className={styles.lButton} onClick={() => window.location.href='/login'}>
+          Login
+        </button>
+        <button className={styles.lButton} onClick={() => window.location.href='/client/register'}>
+          Sign Up
         </button>
 
        

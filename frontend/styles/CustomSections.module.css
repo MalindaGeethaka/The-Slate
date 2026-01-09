@@ -8,15 +8,19 @@
 }
 
 .imageWrapper {
-  position: absolute;
-  width: 100vw;
+ right: 0;
+ width: 50%;
+  
+  
 }
 
 .imageWrapper img {
-  width: 100vw;
+  width: 900px;
   height: 100vh;
   object-fit: cover;
   z-index:1;
+  margin-left: 0;
+  
 }
 
 .yellowBox {
@@ -30,6 +34,12 @@
   overflow: visible;
   font-size: 20px;
   
+}
+.textSec{
+  position: relative;
+  z-index: 2;
+  margin-left: 80px;
+  margin-top: 50px;
 }
 
 /* ===== SECTION 2 ===== */

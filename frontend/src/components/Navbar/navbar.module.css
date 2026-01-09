@@ -29,7 +29,6 @@
   color: #ffffff;
 }
 
-/* Center section: Links */
 .center {
   display: flex;
   gap: 30px;
@@ -55,8 +54,8 @@
   gap: 15px;
 }
 
-.right .bookButton {
-  background-color: #e63946;
+.right .lButton {
+  background-color: #c58f1a;
   color: #fff;
   border: none;
   padding: 8px 18px;
