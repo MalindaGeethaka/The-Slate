@@ -1,11 +1,23 @@
+import express from "express";
 import dotenv from "dotenv";
-import app from "./app.js";
 import connectDB from "./db/db.js";
 
 dotenv.config();
-console.log("Mongo URI:", process.env.MONGO_URI); // TEMP DEBUG
 
+const app = express();
+
+// Middleware
+app.use(express.json());
+
+// Connect to DB
 connectDB();
 
-const PORT = process.env.PORT;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Test route
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

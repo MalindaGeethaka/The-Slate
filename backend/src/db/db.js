@@ -1,21 +1,21 @@
-
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI;
-
-const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true, autoIndex:true } };
-
-const ConnectDB = async()=> {
+const connectDB = async () => {
   try {
-    
-    await mongoose.connect(MONGODB_URI, clientOptions);
-    await mongoose.connection.db.admin().command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    const clientOptions = {
+      serverApi: {
+        version: "1",
+        strict: true,
+        deprecationErrors: true,
+      },
+    };
+
+    await mongoose.connect(process.env.MONGO_URI, clientOptions);
+    console.log("You are successfully connected to the Server DB");
   } catch (error) {
-    console.log("connection error")
-    console.log(error);
-    await mongoose.disconnect();
+    console.error("connection failed:", error.message);
+    process.exit(1);
   }
 };
-export default ConnectDB;
 
+export default connectDB;
