@@ -11,7 +11,7 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       
       <div className={styles.left}>
-        <img src="./images/logo.png" alt="The Slate Logo" className={styles.logo} />
+        <img src="/images/logo.png" alt="The Slate Logo" className={styles.logo} />
         <span className={styles.brand}>The Slate</span>
       </div>
 
