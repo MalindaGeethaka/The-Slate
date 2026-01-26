@@ -1,23 +1,29 @@
 import express from "express";
-import dotenv from "dotenv";
-import connectDB from "./db/db.js";
+import cors from "cors";
+import authRoutes from "./routes/auth.route.js";
+import connectDB from "./db/db.js"
 
-dotenv.config();
 
 const app = express();
-
-// Middleware
-app.use(express.json());
-
-// Connect to DB
 connectDB();
 
-// Test route
+// Middleware
+app.use(cors({
+  origin: "*",
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  allowedHeaders: ["Content-Type","Authorization"]
+}));
+
+app.use(express.json());
+
+// Routes
+app.use(authRoutes);
+
+// Root test route
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Start server
+const PORT = 5005;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

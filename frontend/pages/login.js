@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "../styles/Login.module.css";
 import { useRouter } from "next/router";
+import { logUser } from "../utils/api/auth.api";
 
 export default function Login() {
   const router = useRouter();
@@ -26,13 +27,9 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await logUser({formData});
+       
+       console.log(res);
 
       const data = await res.json();
 
@@ -45,7 +42,7 @@ export default function Login() {
      
       localStorage.setItem("token", data.token);
 
-      router.push("/");
+      router.push("/server");
 
     } catch (err) {
       setError("Something went wrong");
@@ -60,12 +57,12 @@ export default function Login() {
         <h2>Login</h2>
 
         {error && <p className={styles.error}>{error}</p>}
-        <p className={styles.p}>User Name</p>
+        <p className={styles.p}>E Mail</p>
         <input
           type="string"
-          name="username"
-          placeholder="Type your User Name"
-          value={formData.username}
+          name="email"
+          placeholder="Type your E Mail"
+          value={formData.email}
           onChange={handleChange}
           required
         />
@@ -79,8 +76,8 @@ export default function Login() {
           required
         />
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
+        <button type="submit" disabled={loading} onClick={handleSubmit}>
+          {loading ? "Logging in..." : "Login"} 
         </button>
       </form>
     </div>
