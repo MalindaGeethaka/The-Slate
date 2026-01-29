@@ -28,25 +28,22 @@ export default function Login() {
 
     try {
       const res = await logUser({formData});
-       
-       console.log(res);
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setError(data.message || "Login failed");
-        setLoading(false);
-        return;
-      }
-
-     
-      localStorage.setItem("token", data.token);
-
-      router.push("/server");
-
-    } catch (err) {
-      setError("Something went wrong");
+           
+      const data = await res.data || res;
+      
+       if (!data.token) {
+      alert(data.message || "Login failed");
+      return;
     }
+
+    console.log("JWT:", data.token);
+    router.push("/client/profile");
+
+  } catch (error) {
+    console.log(error)
+    alert(error.response?.data?.message || "Something went wrong");
+  }
+
 
     setLoading(false);
   };
@@ -82,4 +79,4 @@ export default function Login() {
       </form>
     </div>
   );
-}
+};

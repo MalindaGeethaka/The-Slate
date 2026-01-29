@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/auth.route.js";
+import protectRoutes from "./routes/protect.routes.js";
 import connectDB from "./db/db.js"
 
 
@@ -18,6 +19,8 @@ app.use(express.json());
 
 // Routes
 app.use(authRoutes);
+app.use(protectRoutes);
+
 
 // Root test route
 app.get("/", (req, res) => {

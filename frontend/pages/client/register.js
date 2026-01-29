@@ -50,10 +50,10 @@ export default function Register() {
 
     setLoading(true);
     try {
-  const data = await registerUser({ formData }); // data is already JSON
+  const data = await registerUser({ formData }); 
   console.log(data);
   alert(data.message);
-  router.push("/login"); // redirect after successful registration
+  router.push("/login");
 } catch (err) {
   alert(err.message || "Something went wrong");
 }
