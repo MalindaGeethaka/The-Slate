@@ -1,11 +1,19 @@
 import express from "express";
-import checkAuth from "../middlewares/auth.middleware.js";
+import { protect, admin } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.get("/client/profile", checkAuth, (req, res) => {
-  res.json({
-    message: "Protected route success",
+router.get("/profile", protect, (req, res) => {
+  res.status(200).json({
+    message: "Profile route accessible",
+    user: req.user, // info from JWT
+  });
+});
+
+// Example: Admin-only route
+router.get("/admin/dashboard", protect, admin, (req, res) => {
+  res.status(200).json({
+    message: "Admin dashboard accessible",
     user: req.user,
   });
 });

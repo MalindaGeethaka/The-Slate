@@ -69,6 +69,39 @@
   background-color: #d62828;
 }
 
+.profileWrapper {
+  position: relative;
+}
+  
+.profileWrapper .profileIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profileDropdown {
+  position: absolute;
+  right: 0;
+  top: 42px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  width: 120px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 50;
+}
+
+.profileDropdown p {
+  margin: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.profileDropdown p:hover {
+  background: #f4f4f4;
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -103,4 +136,6 @@
   .hamburger {
     display: flex;
   }
+  
+
 }

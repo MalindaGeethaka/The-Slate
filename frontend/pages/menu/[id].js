@@ -6,6 +6,7 @@ export default function FoodDetails() {
   const { id } = router.query;
 
   const [item, setItem] = useState(null);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     if (!id) return;
@@ -17,6 +18,30 @@ export default function FoodDetails() {
 
   if (!item) return <p>Loading...</p>;
 
+  const handleAddToCart = () => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    router.push(`/client/login?redirect=${router.asPath}`);
+    return;
+  }
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+  const existingIndex = cart.findIndex((i) => i.id === item.id);
+
+  if (existingIndex >= 0) {
+
+    cart[existingIndex].quantity += quantity;
+  } else {
+   
+    cart.push({ ...item, quantity });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  alert(`${item.name} x${quantity} added to cart`);
+  console.log(cart);
+};
+
   return (
     <div style={{ padding: "80px" }}>
       <img src={item.image} width="400" />
@@ -25,7 +50,17 @@ export default function FoodDetails() {
       <p>⭐ {item.rating}</p>
       <h3>${item.price}</h3>
 
-      <button>Add to Cart</button>
+      <div>
+        <label>Quantity: </label>
+        <input
+          type="number"
+          value={quantity}
+          min="1"
+          onChange={(e) => setQuantity(parseInt(e.target.value))}
+        />
+      </div>
+
+      <button onClick={handleAddToCart}>Add to Cart</button>
     </div>
   );
 }

@@ -6,6 +6,7 @@ export default function handler(req, res) {
       category: "Mains",
       price: 12,
       rating: 4.5,
+      description: "Delicious grilled chicken with herbs",
       
     },
     {
@@ -14,6 +15,7 @@ export default function handler(req, res) {
       category: "Desserts",
       price: 6,
       rating: 4.8,
+      description: "Rich chocolate dessert topped with cream.",
       
     },
     {
@@ -22,6 +24,7 @@ export default function handler(req, res) {
       category: "Coffee",
       price: 4,
       rating: 4.6,
+      description: "Freshly brewed cappuccino with frothy milk.",
     },
     {
       id: 4,

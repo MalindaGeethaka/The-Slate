@@ -1,27 +1,33 @@
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 dotenv.config();
 
-function checkAuth(req,res,next) {
-  console.log("request checked");
+export const protect = (req, res, next) => {
+  let token;
 
-  if (req.headers.authorization == null){
-    return res.status (404).send("auth requested")
+  if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+    token = req.headers.authorization.split(" ")[1];
   }
-  else{
-    const token = req.headers.authorization
 
-    try{
-      const isValid = jwt.verify(token,process.env.JWT_SECRET);
-      req.user = isValid;
-    
-    if (isValid){
-      next();
-    }else{
-      return res.status(401).send("unauthorized");  
+  if (!token) {
+    return res.status(401).json({ message: "Not authorized, token missing" });
   }
-}  catch (error){
-    return res.status(500).send("server error");
-  }}};
 
-  export default checkAuth;
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded; // attach user info from JWT to request
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: "Not authorized, token invalid" });
+  }
+};
+
+export const admin = (req, res, next) => {
+  if (req.user && req.user.role === "admin") {
+    next();
+  } else {
+    return res.status(403).json({ message: "Admin access required" });
+  }
+};
+
+export default { protect, admin };

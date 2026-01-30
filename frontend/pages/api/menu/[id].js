@@ -2,23 +2,25 @@ const menuItems = [
   {
     id: 1,
     name: "Grilled Chicken",
+    description: "Delicious grilled chicken with herbs",
     category: "Mains",
     price: 12,
     rating: 4.5,
     image: "/images/menu1.jpg",
-    description: "Juicy grilled chicken served with herbs and spices.",
+    
   },
   {
     id: 2,
     name: "Chocolate Dessert",
+    description: "Rich chocolate dessert topped with cream.",
     category: "Desserts",
     price: 6,
     rating: 4.8,
     image: "/images/menu2.jpg",
-    description: "Rich chocolate dessert topped with cream.",
   },
   {id: 4,
       name: "malinda ",
+      description: "A delicious beverage",
       category: "Beverages",
       price: 5,
       rating: 4.4,}

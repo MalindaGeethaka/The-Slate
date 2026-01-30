@@ -71,3 +71,17 @@
 .card span {
   font-weight: bold;
 }
+.cartBtn {
+  background-color: #30c566;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  margin-left: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+.cartBtn:hover {
+  background-color: #09702f;
+}

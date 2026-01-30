@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "../styles/Login.module.css";
 import { useRouter } from "next/router";
 import { logUser } from "../utils/api/auth.api";
+import {jwtDecode} from "jwt-decode";
 
 export default function Login() {
   const router = useRouter();
@@ -22,27 +23,25 @@ export default function Login() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+  e.preventDefault();
 
-    try {
-      const res = await logUser({formData});
-           
-      const data = await res.data || res;
-      
-       if (!data.token) {
-      alert(data.message || "Login failed");
-      return;
+  try {
+    const res = await logUser({ formData });
+    const token = res.token;
+
+    localStorage.setItem("token", token);
+    window.dispatchEvent(new Event("auth-change"));
+
+    const decoded = jwtDecode(token);
+
+    if (decoded.role === "admin") {
+      router.push("/admin/dashboard");
+    } else {
+      router.push("/");
     }
-
-    console.log("JWT:", data.token);
-    router.push("/client/profile");
-
   } catch (error) {
-    console.log(error)
-    alert(error.response?.data?.message || "Something went wrong");
-  }
+    alert("Login failed");
+  };
 
 
     setLoading(false);
