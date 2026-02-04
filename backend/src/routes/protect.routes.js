@@ -10,12 +10,13 @@ router.get("/profile", protect, (req, res) => {
   });
 });
 
-// Example: Admin-only route
+
 router.get("/admin/dashboard", protect, admin, (req, res) => {
   res.status(200).json({
     message: "Admin dashboard accessible",
     user: req.user,
   });
 });
+
 
 export default router;

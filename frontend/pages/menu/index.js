@@ -13,7 +13,7 @@ export default function MenuPage() {
 
   // Load menu items
   useEffect(() => {
-    fetch("/api/menu")
+    fetch("http://localhost:5005/api/menu")
       .then((res) => res.json())
       .then((data) => setMenuItems(data));
   }, []);

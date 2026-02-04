@@ -11,7 +11,7 @@ export default function FoodDetails() {
   useEffect(() => {
     if (!id) return;
 
-    fetch(`/api/menu/${id}`)
+    fetch(`http://localhost:5005/api/menu/${id}`)
       .then((res) => res.json())
       .then((data) => setItem(data));
   }, [id]);
@@ -44,7 +44,7 @@ export default function FoodDetails() {
 
   return (
     <div style={{ padding: "80px" }}>
-      <img src={item.image} width="400" />
+      <img src={`http://localhost:5005/${item.image}`} width="400" />
       <h1>{item.name}</h1>
       <p>{item.description}</p>
       <p>⭐ {item.rating}</p>

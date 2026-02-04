@@ -3,12 +3,16 @@ import cors from "cors";
 import authRoutes from "./routes/auth.route.js";
 import protectRoutes from "./routes/protect.routes.js";
 import menuRoutes from "./routes/menu.route.js";
+import adminRoutes from "./routes/admin.routes.js";
+import orderRoutes from "./routes/order.route.js";
 import connectDB from "./db/db.js"
 import path from "path";
 
 
 const app = express();
+
 connectDB();
+
 
 // Middleware
 app.use(cors({
@@ -23,6 +27,8 @@ app.use(express.json());
 app.use(authRoutes);
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 app.use("/api/menu", menuRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/orders", orderRoutes);
 app.use(protectRoutes);
 
 

@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
+import express from "express";
 import jwt from "jsonwebtoken";
 
 export const registerUser = async (req, res) => {
@@ -77,3 +78,26 @@ export const loginUser = async (req,res) => {
   }
   }
 };
+
+export const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }else {
+      await User.findByIdAndDelete(req.user.id);
+      return res.status(200).json({ message: "User deleted successfully" });
+    }}
+    catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error while deleting user" });
+  }}
+
+  export const getAllUser = async (req, res) => {
+    try {
+      const users = await User.find();
+      res.status(200).json(users);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch users", error: error.message });
+    }
+  };
