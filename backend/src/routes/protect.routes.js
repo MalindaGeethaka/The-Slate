@@ -3,11 +3,13 @@ import { protect, admin } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.get("/profile", protect, (req, res) => {
-  res.status(200).json({
-    message: "Profile route accessible",
-    user: req.user, // info from JWT
-  });
+router.get("/client/profile", protect, (req, res) => {
+  try {
+    const user = req.user; 
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to load profile" });
+  }
 });
 
 

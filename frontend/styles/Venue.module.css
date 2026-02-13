@@ -26,9 +26,12 @@
 
 /* Map */
 .mapSection {
-  width: 100%;
+  width: 80%;
   height: 60vh;
   position: relative;
+  justify-content: center;
+  margin: 0 auto 80px;
+
 }
 
 .mapLink {

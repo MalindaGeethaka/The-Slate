@@ -2,6 +2,7 @@ import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import express from "express";
 import jwt from "jsonwebtoken";
+import Order from "../models/order.model.js";
 
 export const registerUser = async (req, res) => {
   const { name, email, password, dob, gender } = req.body;
@@ -99,5 +100,14 @@ export const deleteUser = async (req, res) => {
       res.status(200).json(users);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch users", error: error.message });
+    }
+  };
+
+   export const getAllOrders = async (req, res) => {
+    try {
+      const users = await Order.find();
+      res.status(200).json(users);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch orders", error: error.message });
     }
   };

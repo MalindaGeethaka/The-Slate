@@ -2,19 +2,20 @@ import express from "express";
 import { protect, admin } from "../middlewares/auth.middleware.js";
 import User from "../models/user.model.js";
 import Menu from "../models/menu.model.js";
-import { deleteUser, getAllUser } from "../controller/Auth.controller.js";
+import Order from "../models/order.model.js";
+import { deleteUser, getAllOrders, getAllUser } from "../controller/Auth.controller.js";
 
 const router = express.Router();
 
 router.get("/dashboard-stats", protect, admin, async (req, res) => {
   try {
-   // const totalOrders = await Order.countDocuments();
+    const totalOrders = await Order.countDocuments();
     const totalUsers = await User.countDocuments();
     const totalMenuItems = await Menu.countDocuments();
 
     
     res.json({
-      //totalOrders,
+      totalOrders,
       totalUsers,
       totalMenuItems,
     });
@@ -26,6 +27,7 @@ router.get("/dashboard-stats", protect, admin, async (req, res) => {
 
 router.delete("/users/:id", protect, admin, deleteUser);
 router.get("/users", protect, admin, getAllUser);
+router.get("/orders", protect, admin, getAllOrders);
 
 
 export default router;

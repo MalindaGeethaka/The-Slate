@@ -50,13 +50,17 @@
 .menuGrid {
   padding: 60px 80px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 100px;
 }
 
 .card {
   text-align: center;
-  width: auto;
+
+  
+}
+.menuGrid :hover {
+  transform: scale(1.05);
 }
 
 .card img {

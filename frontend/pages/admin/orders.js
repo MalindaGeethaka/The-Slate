@@ -3,7 +3,7 @@ import AdminLayout from "./AdminLayout";
 import axios from "axios";
 
 export default function AdminOrders() {
-  const [orders, setOrders] = useState([]);
+  const [order, setOrder] = useState([]);
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
@@ -12,12 +12,12 @@ export default function AdminOrders() {
   }, []);
 
   const fetchOrders = async () => {
-    const res = await axios.get("http://localhost:5005/api/orders", {
+    const res = await axios.get("http://localhost:5005/api/admin/orders", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    setOrders(res.data);
+    setOrder(res.data);
   };
 
   return (
@@ -35,12 +35,12 @@ export default function AdminOrders() {
         </thead>
 
         <tbody>
-          {orders.map((order) => (
+          {order.map((order) => (
             <tr key={order._id}>
-              <td>{order.user?.name}</td>
-              <td>Rs. {order.totalPrice}</td>
+              <td>{order.user}</td>
+              <td>Rs. {order.total}</td>
               <td>{order.status}</td>
-              <td>{order.createdAt.slice(0, 10)}</td>
+              <td>{order.day}</td>
             </tr>
           ))}
         </tbody>

@@ -1,8 +1,10 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import User from "../models/user.model.js";
+
 dotenv.config();
 
-export const protect = (req, res, next) => {
+export const protect = async (req, res, next) => {
   let token;
 
   if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
@@ -15,7 +17,7 @@ export const protect = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // attach user info from JWT to request
+    req.user = await User.findById(decoded.id).select("-password");
     next();
   } catch (error) {
     return res.status(401).json({ message: "Not authorized, token invalid" });
@@ -29,5 +31,3 @@ export const admin = (req, res, next) => {
     return res.status(403).json({ message: "Admin access required" });
   }
 };
-
-export default { protect, admin };

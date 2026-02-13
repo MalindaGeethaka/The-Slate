@@ -12,16 +12,16 @@ export default function Venue() {
         </p>
       </section>
 
-      {/* Map Section */}
+      
       <section className={styles.mapSection}>
         <a
           href="https://www.google.com/maps"
-          target="_blank"
+          target="PLATES, 77 Galle Rd, Colombo 00300"
           rel="noopener noreferrer"
           className={styles.mapLink}
         >
           <img
-            src="/images/map-preview.png"
+            src="/images/map.png"
             alt="Venue Location Map"
           />
           <div className={styles.mapOverlay}>
