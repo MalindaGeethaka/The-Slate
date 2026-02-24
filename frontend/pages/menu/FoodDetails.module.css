@@ -1,0 +1,86 @@
+.container {
+  padding: 80px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+.loading {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 100px;
+}
+
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.image {
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.rating {
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.quantityWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.quantityInput {
+  width: 60px;
+  margin-left: 10px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.addButton {
+  display: block;
+  width: 100%;
+  background: linear-gradient(90deg, #000, #555);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.addButton:hover {
+  background: linear-gradient(90deg, #333, #000);
+}

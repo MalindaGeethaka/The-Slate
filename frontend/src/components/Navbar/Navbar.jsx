@@ -7,17 +7,34 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
   const router = useRouter();
 
+  // Check login
   const checkAuth = () => {
     const token = localStorage.getItem("token");
     setIsAuth(!!token);
   };
 
+  // Update cart count from localStorage
+  const updateCartCount = () => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    setCartCount(count);
+  };
+
   useEffect(() => {
     checkAuth();
+    updateCartCount();
+
     window.addEventListener("auth-change", checkAuth);
-    return () => window.removeEventListener("auth-change", checkAuth);
+    window.addEventListener("cart-change", updateCartCount);
+
+    return () => {
+      window.removeEventListener("auth-change", checkAuth);
+      window.removeEventListener("cart-change", updateCartCount);
+    };
   }, []);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -45,20 +62,24 @@ const Navbar = () => {
         <Link href="/venue" onClick={() => setMenuOpen(false)}>Venue</Link>
       </div>
 
-      {/* Right */}
+      
       <div className={styles.right}>
+        
+        <div className={styles.cartIcon}
+          onClick={() => router.push("/cart")} 
+        >
+          🛒
+            {cartCount > 0 && <span className={styles.cartBadge}>{cartCount}</span>}
+
+        </div>
+
+       
         {!isAuth ? (
           <>
-            <button
-              className={styles.lButton}
-              onClick={() => router.push("/login")}
-            >
+            <button className={styles.lButton} onClick={() => router.push("/login")}>
               Login
             </button>
-            <button
-              className={styles.lButton}
-              onClick={() => router.push("/client/register")}
-            >
+            <button className={styles.lButton} onClick={() => router.push("/client/register")}>
               Sign Up
             </button>
           </>
@@ -70,7 +91,6 @@ const Navbar = () => {
               className={styles.profileIcon}
               onClick={() => setProfileOpen(!profileOpen)}
             />
-
             {profileOpen && (
               <div className={styles.profileDropdown}>
                 <p onClick={() => router.push("/client/profile")}>Profile</p>
