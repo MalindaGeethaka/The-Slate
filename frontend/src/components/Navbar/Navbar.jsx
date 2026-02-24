@@ -11,13 +11,13 @@ const Navbar = () => {
 
   const router = useRouter();
 
-  // Check login
+ 
   const checkAuth = () => {
     const token = localStorage.getItem("token");
     setIsAuth(!!token);
   };
 
-  // Update cart count from localStorage
+ 
   const updateCartCount = () => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -66,7 +66,7 @@ const Navbar = () => {
       <div className={styles.right}>
         
         <div className={styles.cartIcon}
-          onClick={() => router.push("/cart")} 
+          onClick={() => router.push("/client/cart")} 
         >
           🛒
             {cartCount > 0 && <span className={styles.cartBadge}>{cartCount}</span>}
@@ -100,7 +100,7 @@ const Navbar = () => {
           </div>
         )}
 
-        {/* Hamburger */}
+      
         <div className={styles.hamburger} onClick={toggleMenu}>
           <div className={styles.bar}></div>
           <div className={styles.bar}></div>
