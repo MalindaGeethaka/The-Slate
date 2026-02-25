@@ -11,23 +11,24 @@ export default function MenuPage() {
   const [category, setCategory] = useState("All");
   
 
-  // Load menu items
+  
   useEffect(() => {
     fetch("http://localhost:5005/api/menu")
       .then((res) => res.json())
       .then((data) => setMenuItems(data));
   }, []);
 
-  // Filter by category
+
   const filteredItems =
     category === "All"
       ? menuItems
       : menuItems.filter((item) => item.category === category);
 
-  // Add to cart handler
+  
   const handleAddToCart = (item) => {
-    router.push(`/menu/${item.id}`);
-  };
+  const itemId = item._id || item.id;
+  router.push(`/menu/${itemId}`);
+};
 
   return (
     <>

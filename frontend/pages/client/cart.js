@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import styles from "../../styles/Cart.module.css";
+import { useRouter } from "next/router";
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
+  const router = useRouter();
 
-  // Load cart items and listen to updates
+
   useEffect(() => {
     const loadCart = () => {
       const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -58,16 +60,20 @@ export default function Cart() {
     0
   );
 
-  const getImageUrl = (image) => {
-    if (!image) return "/images/default-food.png";
-    return image.startsWith("http")
-      ? image
-      : `http://localhost:5005${image.startsWith("/") ? "" : "/"}${image}`;
-  };
+const getImageUrl = (image) => {
+  if (!image) return "/images/default.jpg";
+
+  if (image.startsWith("http")) return image;
+
+  return image.startsWith("/uploads")
+    ? `http://localhost:5005${image}`
+    : `http://localhost:5005/uploads/${image}`;
+};
+  
 
   const handleCheckout = () => {
-    alert("Checkout feature coming soon!");
-  };
+  router.push("/client/checkout");
+};
 
   return (
     <div className={styles.container}>

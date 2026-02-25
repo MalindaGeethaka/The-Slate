@@ -20,7 +20,7 @@ const Navbar = () => {
  
   const updateCartCount = () => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
     setCartCount(count);
   };
 
@@ -41,6 +41,9 @@ const Navbar = () => {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("cart");
+    setIsAuth(false);
+    setCartCount(0);
     window.dispatchEvent(new Event("auth-change"));
     setProfileOpen(false);
     router.push("/login");
@@ -64,14 +67,14 @@ const Navbar = () => {
 
       
       <div className={styles.right}>
-        
+        {isAuth && (
         <div className={styles.cartIcon}
           onClick={() => router.push("/client/cart")} 
         >
           🛒
             {cartCount > 0 && <span className={styles.cartBadge}>{cartCount}</span>}
 
-        </div>
+        </div>)}
 
        
         {!isAuth ? (

@@ -11,27 +11,42 @@ export default function FoodDetails() {
 
   useEffect(() => {
     if (!id) return;
+
     fetch(`http://localhost:5005/api/menu/${id}`)
       .then((res) => res.json())
-      .then((data) => setItem(data));
+      .then((data) => setItem(data))
+      .catch((err) => console.error(err));
   }, [id]);
 
   if (!item) return <p className={styles.loading}>Loading...</p>;
 
+
+  const buildImageUrl = (image) => {
+    if (!image) return "/images/default.jpg";
+
+    if (image.startsWith("http")) return image;
+
+    if (image.startsWith("/uploads")) {
+      return `http://localhost:5005${image}`;
+    }
+
+    return `http://localhost:5005/uploads/${image}`;
+  };
+
+  const imageUrl = buildImageUrl(item.image);
+
   const handleAddToCart = () => {
     const token = localStorage.getItem("token");
+
     if (!token) {
-      router.push(`/client/login?redirect=${router.asPath}`);
+      router.push("/client/login");
       return;
     }
 
-    // Get current cart from localStorage
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
 
-    // Normalize item ID
-    const itemId = item.id || item._id;
+    const itemId = item._id || item.id;
 
-    // Check if item already exists in cart
     const existingIndex = cart.findIndex((i) => i.id === itemId);
 
     if (existingIndex >= 0) {
@@ -41,22 +56,17 @@ export default function FoodDetails() {
         id: itemId,
         name: item.name,
         price: item.price,
-        quantity,
-        image: item.image || "",
+        quantity: quantity,
+        image: buildImageUrl(item.image), 
       });
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    // Dispatch event so Cart page & Navbar can listen
     window.dispatchEvent(new Event("cart-change"));
 
     alert(`${item.name} x${quantity} added to cart`);
   };
-
-  const imageUrl = item.image.startsWith("/uploads")
-    ? `http://localhost:5005${item.image}`
-    : `http://localhost:5005/uploads/${item.image}`;
 
   return (
     <div className={styles.container}>
@@ -75,12 +85,19 @@ export default function FoodDetails() {
           type="number"
           min="1"
           value={quantity}
-          onChange={(e) => setQuantity(parseInt(e.target.value))}
+          onChange={(e) =>
+            setQuantity(Math.max(1, parseInt(e.target.value) || 1))
+          }
           className={styles.quantityInput}
         />
       </div>
 
-      <button className={styles.addButton} onClick={handleAddToCart}>
+ 
+      <button
+        type="button"
+        className={styles.addButton}
+        onClick={handleAddToCart}
+      >
         Add to Cart
       </button>
     </div>
